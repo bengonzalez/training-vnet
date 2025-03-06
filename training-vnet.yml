@@ -2,6 +2,9 @@ pool:
   name: Azure Pipelines
   vmImage: ubuntu-latest
 
+variables:
+  - group: training-vars
+
 steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
   displayName: 'Install Terraform latest'
