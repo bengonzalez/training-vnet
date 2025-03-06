@@ -9,21 +9,19 @@ steps:
 - script: |
     export TF_VAR_tli=$(tli)
     export TF_VAR_sub_short_name=$(sub_short_name)
-    export TF_VAR_region=$(ocs_region_primary)
+    export TF_VAR_region=$(region_primary)
     export TF_VAR_region_short=$(region_primary_short)
     export TF_VAR_competency=$(competency)
-    export TFADMIN=$(tfadmin)
-    export TFCONTAINER=$(tfcontainer)
     
     export ARM_CLIENT_ID=$(Azure-SP-ID)
     export ARM_CLIENT_SECRET=$(Azure-SP-Pass)
     export ARM_TENANT_ID=$(Azure-Tenant-ID)
     export ARM_SUBSCRIPTION_ID=$(Azure-Sub-ID)
 
-    export tf_rg_name=rg-$TF_VAR_region_short-$TF_VAR_sub_short_name-$TF_VAR_tli-$TFADMIN
-    export tf_stg_name=stg$TF_VAR_region_short$TF_VAR_sub_short_name$TF_VAR_tli$TFADMIN
-    export tf_container_name=$TFCONTAINER
-    export tf_backend_key=$TF_VAR_competency.tfstate
+    export tf_rg_name=$(tf_rg_name)
+    export tf_stg_name=$(tf_stg_name)
+    export tf_container_name=$(tf_container)
+    export tf_backend_key=$(tf_key)
     
     echo $tf_rg_name
     echo $tf_stg_name
@@ -34,7 +32,10 @@ steps:
     
     export ARM_USE_CLI=false
     
-    terraform init -backend-config="resource_group_name=$tf_rg_name" -backend-config="storage_account_name=$tf_stg_name" -backend-config="container_name=$tf_container_name" -backend-config="key=$tf_backend_key"
+    terraform init -backend-config="resource_group_name=$tf_rg_name" \
+                   -backend-config="storage_account_name=$tf_stg_name" \
+                   -backend-config="container_name=$tf_container_name" \
+                   -backend-config="key=$tf_backend_key"
     
     terraform fmt
     terraform workspace select primary
