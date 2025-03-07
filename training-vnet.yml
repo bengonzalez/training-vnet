@@ -43,6 +43,9 @@ steps:
                    -backend-config="container_name=$tf_container_name" \
                    -backend-config="key=$tf_backend_key"
     
+    ls -al .
+    ls -al ./env/
+
     terraform fmt
     terraform workspace select primary
     terraform apply -var-file ./env/primary.tfvars --auto-approve
