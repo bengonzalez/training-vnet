@@ -29,9 +29,9 @@ steps:
     echo $tf_rg_name
     echo $tf_stg_name
     
-    az_login_cmd="az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET ---tenant ARM_TENANT_ID"
+    az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET ---tenant ARM_TENANT_ID
     az account set -s $ARM_SUBSCRIPTION_ID
-    
+
     ACCOUNT_KEY=$(az storage account keys list --resource-group $tf_rg_name --account-name $tf_stg_name --query '[0].value' -o tsv)
     export ARM_ACCESS_KEY=$ACCOUNT_KEY
     echo ARM_ACCESS_KEY:$ARM_ACCESS_KEY
