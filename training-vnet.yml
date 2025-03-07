@@ -50,7 +50,7 @@ steps:
 
     terraform fmt
     # terraform workspace select primary
-    terraform plan
+    terraform plan -var-file ./env/primary.tfvars
     terraform apply -var-file ./env/primary.tfvars --auto-approve
   displayName: 'Terraform init and apply'
      
