@@ -1,0 +1,7 @@
+cg3_env             = "secondary"
+vnet_addr           = "172.17.0.0/20"
+snet_addr_dev       = "172.17.9.0/24"
+snet_addr_qa        = "172.17.10.0/24"
+snet_addr_prod      = "172.17.11.0/24"
+snet_addr_perf      = "172.17.12.0/24"
+snet_addr_bastion   = "172.17.13.0/24"
