@@ -45,8 +45,8 @@ steps:
                    -backend-config="key=$tf_backend_key"
 
     # Get variables from
-    environment=$(env)
-    tf_action=$(tf_action)
+    export environment=$(env)
+    export tf_action=$(tf_action)
 
     terraform fmt
     terraform workspace select $environment
