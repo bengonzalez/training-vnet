@@ -48,7 +48,7 @@ steps:
 
     terraform fmt
     terraform workspace select primary
-    terraform apply -var-file ./env/primary.tfvars --auto-approve
+    terraform destroy -var-file ./env/primary.tfvars --auto-approve
   displayName: 'Terraform init and apply'
      
 
