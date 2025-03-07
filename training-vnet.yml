@@ -44,10 +44,14 @@ steps:
                    -backend-config="container_name=$tf_container_name" \
                    -backend-config="key=$tf_backend_key"
 
+    # Get variables from
+    environment=$(env)
+    tf_action=$(tf_action)
+
     terraform fmt
-    terraform workspace select primary
+    terraform workspace select $environment
     terraform plan
-    terraform $(tf_action) -var-file ./env/$(env).tfvars --auto-approve
+    terraform $tf_action -var-file ./env/primary.tfvars --auto-approve
   displayName: 'Terraform init and apply'
      
 
