@@ -21,7 +21,6 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "dev" {
   name                 = local.snet_name_dev
   resource_group_name  = local.rg_name
-  enforce_private_link_endpoint_network_policies = true
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.snet_addr_dev]
   depends_on           = [azurerm_virtual_network.vnet]
