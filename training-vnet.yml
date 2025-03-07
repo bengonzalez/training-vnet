@@ -49,7 +49,7 @@ steps:
     export tf_action=$(tf_action)
 
     terraform fmt
-    terraform workspace select primary
+    # terraform workspace select primary
     terraform plan
     terraform $tf_action -var-file ./env/primary.tfvars --auto-approve
   displayName: 'Terraform init and apply'
